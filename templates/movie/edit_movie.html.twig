@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{%form_theme form 'bootstrap_5_layout.html.twig'%}
+{% block title %}{% endblock %}
+
+{% block body %}
+{{form_start(form)}}
+{{form_label(form.title, 'Le titre')}}
+    {{form_row(form.title)}}
+    {# {{form_label(form.description, 'Le synopsys')}} #}
+    {{form_row(form.description)}}
+    {# {{form_label(form.publishedAt, 'La date de sortie')}} #}
+    {{form_row(form.publishedAt)}}
+    {# {{form_label(form.director, 'Le producteur')}} #}
+    {{form_row(form.director)}}
+
+    {{form_row(form.category)}}
+    <button type="submit" class="btn btn-success">Valider</button>
+{{form_end(form)}}
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{%form_theme form 'bootstrap_5_layout.html.twig'%}
+{% block title %}{{movie.title}}{% endblock %}
+
+{% block body %}
+    <div class="card mt-4 w-50">
+  <div class="card-body">
+    <h5 class="card-title">{{movie.title}} - Sorti le {{movie.publishedAt|date("d/m/Y", "Europe/Paris")}}</h5>
+    <p class="card-text">{{movie.description}}</p>
+    <a href="{{path('editMovie', {id:movie.id})}}" class="btn btn-warning">Modifier la fiche</a>
+    <a href="{{path('deleteMovie', {id:movie.id})}}" class="btn btn-danger">Supprimer la fiche</a>
+  </div>
+  <div class="card-footer text-muted">
+    Ajouté le {{movie.createdAt|date("d/m/Y", "Europe/Paris")}}
+  </div>
+</div>
+{{form_start(form)}}
+{{form_row(form.content)}}
+<button type="submit" class="btn btn-success">Partagez votre impression</button>
+{{form_end(form)}}
+{% for impression in impressions %}
+    <div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Commentaire du {{impression.createdAt|date("m/d/Y", "Europe/Paris")}}</h4>
+  <p>{{impression.content}}</p>
+  <hr>
+  <p class="mb-0">De User</p>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The movie's app{% endblock %}
+
+{% block body %}
+<a href="{{path('deleteCategory', {id:category.id})}}" style="button" class="btn btn-danger">Supprimer cette cétgories (et ses films associés)</a>
+{% for movie in movies %}
+    <div class="card mt-4 w-50">
+    <div class="card-header">
+    <span class="badge bg-dark">{{movie.category.name}}</span>
+    </div>
+  <div class="card-body">
+    <h5 class="card-title">{{movie.title}} - Sorti le {{movie.publishedAt|date("d/m/Y", "Europe/Paris")}}</h5>
+    <p class="card-text">{{movie.description}}</p>
+    <a href="{{path('oneMovie', {id:movie.id})}}" class="btn btn-primary">Voir plus</a>
+    <a href="{{path('editMovie', {id:movie.id})}}" class="btn btn-warning">Modifier la fiche</a>
+    <a href="{{path('deleteMovie', {id:movie.id})}}" class="btn btn-danger">Supprimer la fiche</a>
+  </div>
+  <div class="card-footer text-muted">
+    Ajouté le {{movie.createdAt|date("d/m/Y", "Europe/Paris")}}
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
